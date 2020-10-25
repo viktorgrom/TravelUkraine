@@ -42,11 +42,15 @@ public class DetailActivity extends AppCompatActivity {
 
                 if (snapshot.exists())
                 {
-                    String Name = Objects.requireNonNull(snapshot.child("profileName").getValue()).toString();
+                    String profileName = Objects.requireNonNull(snapshot.child("profileName").getValue()).toString();
+                    String profileDescribe = Objects.requireNonNull(snapshot.child("profileDescribe").getValue()).toString();
+                    String profileLongDescribe = Objects.requireNonNull(snapshot.child("profileLongDescribe").getValue()).toString();
                     String Image = Objects.requireNonNull(snapshot.child("background").getValue()).toString();
 
                     Picasso.with(getBaseContext()).load(Image).into(imageView);
-                    tvTitle.setText(Name);
+                    tvTitle.setText(profileName);
+                    tvShDescribe.setText(profileDescribe);
+                    tvLgDescribe.setText(profileLongDescribe);
                 }
 
             }

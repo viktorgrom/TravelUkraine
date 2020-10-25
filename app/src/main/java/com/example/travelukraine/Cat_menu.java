@@ -5,32 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.travelukraine.Common.Common;
-import com.example.travelukraine.Interface.ItemClickListener;
-import com.example.travelukraine.ViewHolder.MenuViewHolder;
-import com.example.travelukraine.model.Category;
+import com.example.travelukraine.model.CategoryItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class Category_menu extends AppCompatActivity {
+public class Cat_menu extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference DataRef;
 
-    FirebaseRecyclerOptions <Category> options;
-    FirebaseRecyclerAdapter <Category, CategoryViewHolder> catMenuAdapter;
+    FirebaseRecyclerOptions<CategoryItem> options;
+    FirebaseRecyclerAdapter<CategoryItem, CatViewHolder> catMenuAdapter;
 
     TextView txtFullName;
 
@@ -40,9 +36,7 @@ public class Category_menu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_menu);
-
-
+        setContentView(R.layout.activity_cat_menu);
 
         //Init Firebase
         database = FirebaseDatabase.getInstance();
@@ -60,21 +54,19 @@ public class Category_menu extends AppCompatActivity {
         recycler_menu.setLayoutManager(layoutManager);
 
         LoadData();
-
     }
 
     private void LoadData() {
-
-        options = new FirebaseRecyclerOptions.Builder<Category>().setQuery(DataRef, Category.class).build();
-        catMenuAdapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
+        options = new FirebaseRecyclerOptions.Builder<CategoryItem>().setQuery(DataRef, CategoryItem.class).build();
+        catMenuAdapter = new FirebaseRecyclerAdapter<CategoryItem, CatViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i, @NonNull Category category) {
-                categoryViewHolder.textView.setText(category.getName());
-                Picasso.with(getBaseContext()).load(category.getImage()).into(categoryViewHolder.imageView);
+            protected void onBindViewHolder(@NonNull CatViewHolder categoryViewHolder, int i, @NonNull CategoryItem category) {
+                categoryViewHolder.tv_title.setText(category.getProfileName());
+                Picasso.with(getBaseContext()).load(category.getBackground()).into(categoryViewHolder.imageView);
                 categoryViewHolder.v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent detailIntent = new Intent(Category_menu.this, DetailActivity.class);
+                        Intent detailIntent = new Intent(Cat_menu.this, DetailActivity.class);
                         detailIntent.putExtra("CategoryKey", getRef(i).getKey());
                         startActivity(detailIntent);
                     }
@@ -83,17 +75,13 @@ public class Category_menu extends AppCompatActivity {
 
             @NonNull
             @Override
-            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public CatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item,parent,false);
-                return new CategoryViewHolder(v);
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item,parent,false);
+                return new CatViewHolder(v);
             }
         };
         catMenuAdapter.startListening();
         recycler_menu.setAdapter(catMenuAdapter);
-
-
     }
-
-
 }

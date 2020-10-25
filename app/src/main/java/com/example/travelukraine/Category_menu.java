@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class Category_menu extends AppCompatActivity {
 
         //Init Firebase
         database = FirebaseDatabase.getInstance();
-        DataRef = database.getReference("Category");
+        DataRef = database.getReference("Category1");
 
 
         //set name for User
@@ -70,6 +71,14 @@ public class Category_menu extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i, @NonNull Category category) {
                 categoryViewHolder.textView.setText(category.getName());
                 Picasso.with(getBaseContext()).load(category.getImage()).into(categoryViewHolder.imageView);
+                categoryViewHolder.v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detailIntent = new Intent(Category_menu.this, DetailActivity.class);
+                        detailIntent.putExtra("CategoryKey", getRef(i).getKey());
+                        startActivity(detailIntent);
+                    }
+                });
             }
 
             @NonNull

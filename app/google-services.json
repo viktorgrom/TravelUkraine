@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "329753824691",
+    "firebase_url": "https://travel-ukraine.firebaseio.com",
+    "project_id": "travel-ukraine",
+    "storage_bucket": "travel-ukraine.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329753824691:android:4f7b285b1db66ef39c8fc6",
+        "android_client_info": {
+          "package_name": "com.example.travelukraine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329753824691-b2bdp9hiihrhumtat6gfctm7j8462osg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDywzefwxNWE3RSMpzXJFv7uy7RFOAmUvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329753824691-b2bdp9hiihrhumtat6gfctm7j8462osg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

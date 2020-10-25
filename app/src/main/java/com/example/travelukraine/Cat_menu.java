@@ -62,6 +62,7 @@ public class Cat_menu extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CatViewHolder categoryViewHolder, int i, @NonNull CategoryItem category) {
                 categoryViewHolder.tv_title.setText(category.getProfileName());
+                categoryViewHolder.tv_sh_des.setText(category.getProfileDescribe());
                 Picasso.with(getBaseContext()).load(category.getBackground()).into(categoryViewHolder.imageView);
                 categoryViewHolder.v.setOnClickListener(new View.OnClickListener() {
                     @Override

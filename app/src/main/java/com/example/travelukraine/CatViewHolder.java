@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CatViewHolder extends RecyclerView.ViewHolder {
 
-    TextView tv_title, tv_sh_des, tv_lg_des;
+    TextView tv_title, tv_sh_des, tv_lg_des, tv_on_map;
     ImageView imageView;
     View v;
 
@@ -20,6 +20,7 @@ public class CatViewHolder extends RecyclerView.ViewHolder {
         tv_sh_des = itemView.findViewById(R.id.short_describe_place);
         tv_lg_des = itemView.findViewById(R.id.tv_long_describe);
         imageView = itemView.findViewById(R.id.card_background);
+        tv_on_map = itemView.findViewById(R.id.tv_on_map);
         v = itemView;
     }
 }

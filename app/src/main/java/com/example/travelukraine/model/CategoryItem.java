@@ -6,15 +6,25 @@ public class CategoryItem {
     String profileName;
     String profileDescribe;
     String profileLongDescribe;
+    String profileOnMap;
 
     public CategoryItem() {
     }
 
-    public CategoryItem(String background, String profileName, String profileDescribe, String profileLongDescribe) {
+    public String getProfileOnMap() {
+        return profileOnMap;
+    }
+
+    public void setProfileOnMap(String profileOnMap) {
+        this.profileOnMap = profileOnMap;
+    }
+
+    public CategoryItem(String background, String profileName, String profileDescribe, String profileLongDescribe, String profileOnMap) {
         this.background = background;
         this.profileName = profileName;
         this.profileDescribe = profileDescribe;
         this.profileLongDescribe = profileLongDescribe;
+        this.profileOnMap = profileOnMap;
     }
 
     public String getBackground() {

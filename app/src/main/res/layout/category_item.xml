@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="230dp">
+    android:layout_height="200dp">
 
     <ImageView
         android:id="@+id/card_background"
@@ -45,9 +45,9 @@
         android:layout_width="276dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:textColor="#fff"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_background_detail"
         app:layout_constraintTop_toTopOf="@+id/iv_background_detail" />
@@ -69,6 +69,18 @@
 
     <TextView
         android:id="@+id/tv_long_describe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_on_map"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="36dp"

@@ -19,7 +19,7 @@ import java.util.Objects;
 public class DetailActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    TextView tvTitle, tvShDescribe, tvLgDescribe;
+    TextView tvTitle, tvShDescribe, tvLgDescribe, tvOnMap;
 
     DatabaseReference ref;
 
@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.title_detail);
         tvShDescribe = findViewById(R.id.descr_detail);
         tvLgDescribe = findViewById(R.id.tv_long_descr_detail);
+        tvOnMap = findViewById(R.id.tv_map_data);
         ref = FirebaseDatabase.getInstance().getReference().child("Category1");
 
         String CategoryKey = getIntent().getStringExtra("CategoryKey");
@@ -45,12 +46,15 @@ public class DetailActivity extends AppCompatActivity {
                     String profileName = Objects.requireNonNull(snapshot.child("profileName").getValue()).toString();
                     String profileDescribe = Objects.requireNonNull(snapshot.child("profileDescribe").getValue()).toString();
                     String profileLongDescribe = Objects.requireNonNull(snapshot.child("profileLongDescribe").getValue()).toString();
+                    String profileOnMap = Objects.requireNonNull(snapshot.child("profileOnMap").getValue()).toString();
+
                     String Image = Objects.requireNonNull(snapshot.child("background").getValue()).toString();
 
                     Picasso.with(getBaseContext()).load(Image).into(imageView);
                     tvTitle.setText(profileName);
                     tvShDescribe.setText(profileDescribe);
                     tvLgDescribe.setText(profileLongDescribe);
+                    tvOnMap.setText(profileOnMap);
                 }
 
             }

@@ -59,7 +59,7 @@ public class SignIn extends AppCompatActivity {
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Вхід виконано", Toast.LENGTH_SHORT).show();
                             } else {
-                                Intent categotyIntent = new Intent(SignIn.this, Cat_menu.class);
+                                Intent categotyIntent = new Intent(SignIn.this, CategoryActivity.class);
                                 Common.currenrUser = user;
                                 startActivity(categotyIntent);
                                 finish();

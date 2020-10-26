@@ -7,24 +7,20 @@ public class CategoryItem {
     String profileDescribe;
     String profileLongDescribe;
     String profileOnMap;
+    String profileCatID;
 
     public CategoryItem() {
     }
 
-    public String getProfileOnMap() {
-        return profileOnMap;
-    }
 
-    public void setProfileOnMap(String profileOnMap) {
-        this.profileOnMap = profileOnMap;
-    }
 
-    public CategoryItem(String background, String profileName, String profileDescribe, String profileLongDescribe, String profileOnMap) {
+    public CategoryItem(String background, String profileName, String profileDescribe, String profileLongDescribe, String profileOnMap, String profileCatID) {
         this.background = background;
         this.profileName = profileName;
         this.profileDescribe = profileDescribe;
         this.profileLongDescribe = profileLongDescribe;
         this.profileOnMap = profileOnMap;
+        this.profileCatID = profileCatID;
     }
 
     public String getBackground() {
@@ -45,6 +41,13 @@ public class CategoryItem {
 
     public String getProfileDescribe() {
         return profileDescribe;
+    }
+    public String getProfileOnMap() {
+        return profileOnMap;
+    }
+
+    public void setProfileOnMap(String profileOnMap) {
+        this.profileOnMap = profileOnMap;
     }
 
     public void setProfileDescribe(String profileDescribe) {

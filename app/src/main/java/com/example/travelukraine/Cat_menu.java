@@ -33,6 +33,11 @@ public class Cat_menu extends AppCompatActivity {
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
 
+    String categoryId = "";
+
+    //FirebaseRecyclerAdapter<CategoryItem, CatViewHolder> adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +58,48 @@ public class Cat_menu extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
 
-        LoadData();
+        //get Intent here
+        if (getIntent() != null)
+            categoryId = getIntent().getStringExtra("CategoryId");
+        if (!categoryId.isEmpty() && categoryId != null)
+        {
+            loadListPlace(categoryId);
+        }
+
+        //LoadData();
     }
 
-    private void LoadData() {
+    private void loadListPlace(String categoryId) {
+        options = new FirebaseRecyclerOptions.Builder<CategoryItem>().setQuery(DataRef.orderByChild("profileCatID").equalTo(categoryId), CategoryItem.class).build(); //R.layout.category_item, CatViewHolder.class, DataRef.orderByChild("profileCatID").equalTo(categoryId))
+        catMenuAdapter = new FirebaseRecyclerAdapter<CategoryItem, CatViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull CatViewHolder catViewHolder, int i, @NonNull CategoryItem categoryItem) {
+                catViewHolder.tv_title.setText(categoryItem.getProfileName());
+                catViewHolder.tv_sh_des.setText(categoryItem.getProfileDescribe());
+                Picasso.with(getBaseContext()).load(categoryItem.getBackground()).into(catViewHolder.imageView);
+                catViewHolder.v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detailIntent = new Intent(Cat_menu.this, DetailActivity.class);
+                        detailIntent.putExtra("CategoryKey", getRef(i).getKey());
+                        startActivity(detailIntent);
+                    }
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public CatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_menu_item,parent,false);
+                return new CatViewHolder(v);
+            }
+        };
+        catMenuAdapter.startListening();
+        recycler_menu.setAdapter(catMenuAdapter);
+
+    }
+    /*private void LoadData() {
         options = new FirebaseRecyclerOptions.Builder<CategoryItem>().setQuery(DataRef, CategoryItem.class).build();
         catMenuAdapter = new FirebaseRecyclerAdapter<CategoryItem, CatViewHolder>(options) {
             @Override
@@ -73,7 +116,6 @@ public class Cat_menu extends AppCompatActivity {
                     }
                 });
             }
-
             @NonNull
             @Override
             public CatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -84,5 +126,5 @@ public class Cat_menu extends AppCompatActivity {
         };
         catMenuAdapter.startListening();
         recycler_menu.setAdapter(catMenuAdapter);
-    }
+    }*/
 }
